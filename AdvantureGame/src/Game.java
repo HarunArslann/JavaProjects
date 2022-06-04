@@ -1,10 +1,8 @@
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.Scanner;
 
 public class Game {
 
-    private Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     private Player player;
     private Location location;
@@ -22,16 +20,16 @@ public class Game {
         System.out.println("Sayin " + player.getName() + " bu karanlik ve sisli adaya hosgeldiniz!");
         player.selectChar();
 
-        Location location = null;
+        Location location;
 
         while (true){
             if(this.player.getInventory() != null){
                 if(checkInventory()){
                     System.out.println("TEBRIKLER " + player.getName() +
-                            "\n" + Cave.food +
-                            "\n" + Forest.firewood +
-                            "\n" + River.water +
-                            "\nbu 3 ganimeti toplayarak adadan kacmayi basardin.");
+                            "\n" + new Cave(player).getLoot() +
+                            "\n" + new Forest(player).getLoot() +
+                            "\n" + new River(player).getLoot() +
+                            "\n3 ganimeti toplayarak adadan kacmayi basardin.");
                     break;
                 }
             }
